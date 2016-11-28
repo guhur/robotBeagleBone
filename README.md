@@ -1,5 +1,5 @@
 # Montage Master 2 FE Genie Electrique : robotBeagleBone
-Par Christian Lafforgue, Yann Labbée et Pierre-Louis Guhur
+Par Christian Lafforgue avec Yann Labbé et Pierre-Louis Guhur
 
 ## Installation
 - lancement du serveur web :
