@@ -3,24 +3,68 @@
 <title>Controle de la BeagleBone</title>
 </head>
 
+
+<style>
+body {
+    background-color: linen;
+}
+
+.command {
+    width: 30px;
+	height: 30px;
+	margin-right: 5px;
+}
+
+.command-up {
+    margin-left: 40px;
+}
+.exec {
+	display: hidden;
+}
+</style>
+
+<script type="text/javascript">
+function action(a)
+{
+	file = '';
+	switch(a){
+		case 0:
+			file = 'avance.cgi';
+			break;
+		case 1:
+			file = 'turn_left.cgi';
+			break;
+		case 2:
+			file = 'recule.cgi';
+			break;
+		case 2:
+			file = 'turn_left.cgi';
+			break;
+		default:
+			file = 'stop.cgi';
+			break;
+	}
+	document.getElementById('exec').src = file ;
+ }
+ </script>
 <body>
 
 
-<frame src="138.231.34.250:8181/avance.sh" />
-<button type="button" onmousedown="action(0);" onmouseup="action(-1)"> l </button>
-<button type="button" onmousedown="action(1);" onmouseup="action(-1)"> r </button>
-<button type="button" onmousedown="action(2);" onmouseup="action(-1)"> u </button>
-<button type="button" onmousedown="action(3);" onmouseup="action(-1)"> d </button>
 
-<script Language="Javascript">
-function action(a)
-{
-	switch(a){
-		case -1:
+<button type="button" class='command command-up' onmousedown="action(0);" onmouseup="action(-1)"> up </button>
+<br />
+<button type="button" class='command command-left'  onmousedown="action(1);" onmouseup="action(-1)"> left </button>
+<button type="button" class='command command-down'  onmousedown="action(2);" onmouseup="action(-1)"> down </button>
+<button type="button" class='command command-right'  onmousedown="action(3);" onmouseup="action(-1)"> right </button>
 
+<!--<frame id='monitor' src="138.231.34.250:8181/monitoring.cgi" />-->
+<iframe id="exec" class="exec" src="stop.cgi" />
+<iframe id='monitor' src="monitoring.cgi" />
+<script type="text/javascript">
+ setTimeout(function(){
+      	document.getElementById('monitor').contentWindow.location.reload();
+   }, 500)
 
-
-}
 </script>
 
 
