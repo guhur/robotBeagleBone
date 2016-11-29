@@ -7,7 +7,7 @@ inh_1=0
 inh_2=0
 sr_1=0
 sr_2=0
-
+echo "Monitoring"
 while true
 do
 sr_1=$(cat gpio_sr_left/value)

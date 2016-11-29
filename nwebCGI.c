@@ -110,13 +110,21 @@ void web(int fd, int hit)
 		if( !strncmp(&buffer[buflen-len], extensions[i].ext, len)) {
 			fstr =extensions[i].filetype;
 			if (!strncmp(extensions[i].ext, "cgi",len)) {
-					char command[BUFSIZE + 20];
-					char page[BUFSIZE];
-					strcpy(page, &buffer[5]);
-					sprintf(command, "./%s > tmp.html", page);
-					logger(LOG,"command",command,hit);
-			 		system(command);
-					(void)strcpy(buffer,"GET /tmp.html");
+				char command[BUFSIZE + 20];
+				char page[BUFSIZE];
+				strcpy(page, &buffer[5]);
+				sprintf(command, "./%s > tmp.%s.html", page, page); //FIXME: not secure
+				logger(LOG,"command",command,hit);
+				system(command);
+				sprintf(command, "GET /tmp.%s.html", page);
+				(void)strcpy(buffer,command);
+				// char command[BUFSIZE + 20];
+				// 	char page[BUFSIZE];
+				// 	strcpy(page, &buffer[5]);
+				// 	sprintf(command, "./%s > tmp.html", page);
+				// 	logger(LOG,"command",command,hit);
+				// 		system(command);
+				// 	(void)strcpy(buffer,"GET /tmp.html");
 			 }
 			break;
 		}
